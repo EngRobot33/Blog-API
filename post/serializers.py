@@ -8,6 +8,7 @@ User = get_user_model()
 class PostSerializer(serializers.ModelSerializer):
     def get_author(self, obj):
         return {
+            "id": obj.author.id,
             "username": obj.author.username,
             "first_name": obj.author.first_name,
             "last_name": obj.author.last_name,

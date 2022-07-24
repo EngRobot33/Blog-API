@@ -5,7 +5,7 @@
 
 * First of all clone the project:
 ```
-git clone https://github.com/EngRobot33/Quiz.git
+git clone https://github.com/EngRobot33/Blog-API.git
 ```
 * Then, we need a virtual environment you can create like this:
 ```

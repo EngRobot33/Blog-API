@@ -51,3 +51,19 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
 
     def is_staff(self):
         return self.is_admin
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    posts_count = models.PositiveIntegerField(default=0)
+    followers_count = models.PositiveIntegerField(default=0)
+    followings_count = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
+        db_table = 'profiles'
+        indexes = [models.Index(fields=['user', 'posts_count', 'followers_count', 'followings_count', ])]
+
+    def __str__(self):
+        return f"{self.user}"

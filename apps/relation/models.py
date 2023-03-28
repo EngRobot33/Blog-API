@@ -20,4 +20,4 @@ class Relation(models.Model):
             raise ValidationError({"follower": "Follower cannot be following!"})
 
     def __str__(self):
-        return f"{self.follower.username} -> {self.following.username}"
+        return f"{self.follower} -> {self.following}"

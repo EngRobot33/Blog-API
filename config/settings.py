@@ -169,7 +169,7 @@ SIMPLE_JWT = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://localhost:6379'
+        'LOCATION': config('REDIS_LOCATION', default='redis://localhost:6379')
     }
 }
 

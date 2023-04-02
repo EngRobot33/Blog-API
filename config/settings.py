@@ -39,6 +39,7 @@ LOCAL_APPS = [
     'apps.common.apps.CommonConfig',
     'apps.relation.apps.RelationConfig',
     'apps.post.apps.PostConfig',
+    'apps.task.apps.TaskConfig',
     'apps.user.apps.UserConfig',
 ]
 
@@ -46,6 +47,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'drf_yasg',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 INSTALLED_APPS = [
@@ -165,6 +168,7 @@ SIMPLE_JWT = {
 
 
 # Redis
+# https://redis.io/docs/
 
 CACHES = {
     'default': {
@@ -174,3 +178,16 @@ CACHES = {
 }
 
 CACHE_TTL = 60 * 15
+
+
+# Celery
+# https://docs.celeryproject.org/en/stable/userguide/configuration.html
+
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='amqp://guest:guest@localhost//')
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_TIMEZONE = 'UTC'
+
+CELERY_TASK_SOFT_TIME_LIMIT = 20
+CELERY_TASK_TIME_LIMIT = 30
+CELERY_TASK_MAX_RETRIES = 3
